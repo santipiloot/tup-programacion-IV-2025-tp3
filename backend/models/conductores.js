@@ -11,6 +11,10 @@ const Conductor = {
         const [result] = await db.execute(sql, [nombre, apellido, dni, licencia, vencimiento_licencia]);
         return result;
     },
+    update: async (nombre, apellido, dni, licencia, vencimiento_licencia, id) => {
+        const sql = "UPDATE conductores SET nombre=?, apellido=?, dni=?, licencia=?, vencimiento_licencia=? WHERE id=?";
+        await db.execute(sql, [nombre, apellido, dni, licencia, vencimiento_licencia, id])
+    }
 }
 
 export default Conductor;
