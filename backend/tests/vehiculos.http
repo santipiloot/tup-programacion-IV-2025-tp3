@@ -14,3 +14,15 @@ Content-Type: application/json
     "anio": "2019",
     "capacidad_carga": 500
 }
+
+### Actualizar un vehiculo ya existente
+PUT {{url}}/vehiculos/1
+Content-Type: application/json
+
+{
+    "marca": "corolla",
+    "modelo": "xei",
+    "patente": "pap 234", 
+    "anio": "2009",
+    "capacidad_carga": 150
+}
