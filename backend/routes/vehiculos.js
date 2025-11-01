@@ -4,6 +4,7 @@ import vehiculoController from "../controllers/vehiculos.js";
 const router = express.Router();
 
 router.get("/", vehiculoController.getAll);
-router.post("/", vehiculoController.create)
+router.post("/", vehiculoController.create);
+router.put("/:id", vehiculoController.update);
 
 export default router;
