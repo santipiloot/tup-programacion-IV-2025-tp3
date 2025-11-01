@@ -2,3 +2,15 @@
 
 ### Consultar todos los vehiculos
 GET {{url}}/vehiculos
+
+### Crear un nuevo vehiculo 
+POST {{url}}/vehiculos
+Content-Type: application/json
+
+{
+    "marca": "mercedes benz",
+    "modelo": "t340",
+    "patente": "tremp3", 
+    "anio": "2019",
+    "capacidad_carga": 500
+}
