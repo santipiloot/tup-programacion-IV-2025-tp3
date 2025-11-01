@@ -8,7 +8,7 @@ const vehiculoController = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error al obtener vehículos" });
+      res.status(500).json({ success: false, message: "Error al obtener vehículos" });
     }
   },
   create: async (req, res) => {
@@ -28,9 +28,10 @@ const vehiculoController = {
           capacidad_carga
         }
       })
+
     } catch (error) {
       console.error(error)
-      res.status(500).json({ message: "Error al crear el vehiculo" })
+      res.status(500).json({ success: false, message: "Error al crear el vehiculo" })
     }
   },
   update: async (req, res) => {
@@ -53,11 +54,25 @@ const vehiculoController = {
             capacidad_carga
           }
         })
+
     } catch (error) {
       console.error(error);
       res
         .status(500)
-        .json({ message: "Error al actualizar el vehiculo" })
+        .json({ success: false, message: "Error al actualizar el vehiculo" })
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const id = Number(req.params.id)
+
+      Vehiculo.delete(id)
+
+      res.status(200).json({ success: true, data: id })
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: "Error al eliminar el vehiculo" })
     }
   }
 };

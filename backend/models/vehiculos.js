@@ -14,6 +14,9 @@ const Vehiculo = {
     update: async (marca, modelo, patente, anio, capacidad_carga, id) => {
         const sql = "UPDATE vehiculos SET marca=?, modelo=?, patente=?, anio=?, capacidad_carga=? WHERE id=?";
         await db.execute(sql, [marca, modelo, patente, anio, capacidad_carga, id])
+    }, 
+    delete: async (id) => { 
+        await db.execute("DELETE FROM vehiculos WHERE id=?", [id]);
     }
 }
 
