@@ -1,14 +1,36 @@
-import Vehiculo  from "../models/vehiculos.js";
+import Vehiculo from "../models/vehiculos.js";
 
 const vehiculoController = {
   getAll: async (req, res) => {
     try {
       const vehiculos = await Vehiculo.getAll();
-      res.status(200).json({success: true, data: vehiculos});
+      res.status(200).json({ success: true, data: vehiculos });
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error al obtener vehículos' });
+      res.status(500).json({ message: "Error al obtener vehículos" });
+    }
+  },
+  create: async (req, res) => {
+    try {
+      const { marca, modelo, patente, anio, capacidad_carga } = req.body;
+
+      const vehiculo = await Vehiculo.create(marca, modelo, patente, anio, capacidad_carga);
+
+      res.status(201).json({
+        success: true,
+        data: {
+          id: vehiculo.insertId,
+          marca,
+          modelo,
+          patente,
+          anio,
+          capacidad_carga
+        }
+      })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: "Error al crear el vehiculo" })
     }
   }
 };
