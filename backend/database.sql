@@ -17,11 +17,11 @@ CREATE TABLE `conductores` (
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `dni` varchar(15) NOT NULL,
-  `licencia` varchar(20) DEFAULT NULL,
-  `fecha_vencimiento_licencia` date DEFAULT NULL,
+  `licencia` varchar(20) NOT NULL,
+  `vencimiento_licencia` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 -- Tabla de vehiculos
 CREATE TABLE `vehiculos` (
