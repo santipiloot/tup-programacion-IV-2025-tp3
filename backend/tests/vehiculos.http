@@ -3,6 +3,9 @@
 ### Consultar todos los vehiculos
 GET {{url}}/vehiculos
 
+###
+GET {{url}}/vehiculos/kilometros/2
+
 ### Crear un nuevo vehiculo 
 POST {{url}}/vehiculos
 Content-Type: application/json
