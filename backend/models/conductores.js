@@ -14,6 +14,9 @@ const Conductor = {
     update: async (nombre, apellido, dni, licencia, vencimiento_licencia, id) => {
         const sql = "UPDATE conductores SET nombre=?, apellido=?, dni=?, licencia=?, vencimiento_licencia=? WHERE id=?";
         await db.execute(sql, [nombre, apellido, dni, licencia, vencimiento_licencia, id])
+    },
+    delete: async (id) => { 
+        await db.execute("DELETE FROM conductores WHERE id=?", [id]);
     }
 }
 
