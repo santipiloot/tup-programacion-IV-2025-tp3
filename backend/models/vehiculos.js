@@ -17,6 +17,11 @@ const Vehiculo = {
     }, 
     delete: async (id) => { 
         await db.execute("DELETE FROM vehiculos WHERE id=?", [id]);
+    }, 
+    getTotalKm: async(id) => {
+        const sql = "SELECT SUM(kilometros) AS total_km FROM viajes WHERE vehiculo_id=?"
+        const [rows] = await db.execute(sql, [id])
+        return rows[0].total_km 
     }
 }
 
