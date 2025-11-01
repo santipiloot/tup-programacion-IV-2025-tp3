@@ -2,3 +2,18 @@
 
 ### Obtener todos los conductores
 GET {{url}}/viajes
+
+### Crear un nuevo vehiculo 
+POST {{url}}/viajes
+Content-Type: application/json
+
+{
+    "vehiculo_id": 4, 
+    "conductor_id": 1,
+    "fecha_salida": "2025-11-1", 
+    "fecha_llegada": "2025-11-5", 
+    "origen": "Cordoba", 
+    "destino": "La Rioja", 
+    "kilometros": 500, 
+    "observaciones": "Se rompio una llanta"
+}
