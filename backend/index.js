@@ -2,6 +2,7 @@ import express from "express";
 import { conectarDB } from "./database.js";
 import vehiculosRoutes from "./routes/vehiculos.js"
 import conductoresRoutes from "./routes/conductores.js";
+import viajesRoutes from "./routes/viajes.js";
 
 conectarDB();
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/vehiculos", vehiculosRoutes);
 app.use("/conductores", conductoresRoutes)
+app.use("/viajes", viajesRoutes)
 
 app.listen(port, () => {
     console.log(`La app esta funcionando en el puerto ${port}`);
