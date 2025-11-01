@@ -26,3 +26,6 @@ Content-Type: application/json
    "licencia": "A1",
    "vencimiento_licencia": "2025-11-3"
 }
+
+### Eliminar un vehiculo
+DELETE {{url}}/conductores/2
