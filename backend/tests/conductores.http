@@ -3,6 +3,9 @@
 ### Obtener todos los conductores
 GET {{url}}/conductores
 
+###
+GET {{url}}/conductores/kilometros/2
+
 ### Crear un nuevo vehiculo 
 POST {{url}}/conductores
 Content-Type: application/json
