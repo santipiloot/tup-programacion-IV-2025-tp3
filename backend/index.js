@@ -1,6 +1,7 @@
 import express from "express";
 import { conectarDB } from "./database.js";
 import vehiculosRoutes from "./routes/vehiculos.js"
+import conductoresRoutes from "./routes/conductores.js";
 
 conectarDB();
 
@@ -14,7 +15,8 @@ app.get("/", (req, res) => {
   res.send("Hola mundo!");
 });
 
-app.use('/vehiculos', vehiculosRoutes);
+app.use("/vehiculos", vehiculosRoutes);
+app.use("/conductores", conductoresRoutes)
 
 app.listen(port, () => {
     console.log(`La app esta funcionando en el puerto ${port}`);
