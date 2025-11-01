@@ -14,3 +14,15 @@ Content-Type: application/json
    "licencia": "A2",
    "vencimiento_licencia": "2025-11-1"
 }
+
+### Crear un nuevo conductor
+PUT {{url}}/conductores/2
+Content-Type: application/json
+
+{
+   "nombre": "pedro",
+   "apellido": "luque",
+   "dni": "43567856",
+   "licencia": "A1",
+   "vencimiento_licencia": "2025-11-3"
+}
