@@ -4,6 +4,7 @@ import conductorController from "../controllers/conductores.js"
 const router = express.Router();
 
 router.get("/", conductorController.getAll)
+router.get("/kilometros/:id", conductorController.getTotalKm);
 router.post("/", conductorController.create)
 router.put("/:id", conductorController.update)
 router.delete("/:id", conductorController.delete)

@@ -75,6 +75,22 @@ const conductorController = {
       res.status(500).json({ success: false, message: "Error al eliminar el conductor" })
     }
   },
+  getTotalKm: async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      const kilometros = await Conductor.getTotalKm(id)
+
+      if (!kilometros) {
+        return res.status(200).json({ success: true, data: 0 })
+      }
+
+      res.status(200).json({ success: true, data: kilometros })
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: "Algo salio mal al mostrar los kilometros totales del conductor" })
+    }
+  }
 }
 
 export default conductorController

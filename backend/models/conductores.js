@@ -1,7 +1,7 @@
 import { db } from "../database.js";
 
 const Conductor = {
-    getAll: async () => { 
+    getAll: async () => {
         const sql = "SELECT * FROM conductores"
         const [rows] = await db.execute(sql)
         return rows;
@@ -15,8 +15,13 @@ const Conductor = {
         const sql = "UPDATE conductores SET nombre=?, apellido=?, dni=?, licencia=?, vencimiento_licencia=? WHERE id=?";
         await db.execute(sql, [nombre, apellido, dni, licencia, vencimiento_licencia, id])
     },
-    delete: async (id) => { 
+    delete: async (id) => {
         await db.execute("DELETE FROM conductores WHERE id=?", [id]);
+    },
+    getTotalKm: async (id) => {
+        const sql = "SELECT SUM(kilometros) AS total_km FROM viajes WHERE conductor_id=?"
+        const [rows] = await db.execute(sql, [id])
+        return rows[0].total_km
     }
 }
 
