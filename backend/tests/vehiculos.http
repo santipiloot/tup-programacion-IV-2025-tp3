@@ -26,3 +26,6 @@ Content-Type: application/json
     "anio": "2009",
     "capacidad_carga": 150
 }
+
+### Eliminar un vehiculo
+DELETE {{url}}/vehiculos/1
