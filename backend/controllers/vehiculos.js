@@ -74,21 +74,21 @@ const vehiculoController = {
       console.error(error);
       res.status(500).json({ success: false, message: "Error al eliminar el vehiculo" })
     }
-  }, 
+  },
   getTotalKm: async (req, res) => {
-    try{
+    try {
       const id = Number(req.params.id);
       const kilometros = await Vehiculo.getTotalKm(id)
 
-      if (!kilometros){
-        return res.status(200).json({success: true, data: 0})
+      if (!kilometros) {
+        return res.status(200).json({ success: true, data: 0 })
       }
 
-      res.status(200).json({success: true, data:kilometros})
+      res.status(200).json({ success: true, data: kilometros })
 
-    }catch(error) {
+    } catch (error) {
       console.error(error);
-      res.status(500).json({success: false, message: "Algo salio mal al calcular los kilometros totales del vehiculo"})
+      res.status(500).json({ success: false, message: "Algo salio mal al calcular los kilometros totales del vehiculo" })
     }
   }
 };
