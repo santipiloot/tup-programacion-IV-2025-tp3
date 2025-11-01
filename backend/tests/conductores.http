@@ -1,0 +1,16 @@
+@url=http://localhost:3000
+
+### Obtener todos los conductores
+GET {{url}}/conductores
+
+### Crear un nuevo vehiculo 
+POST {{url}}/conductores
+Content-Type: application/json
+
+{
+   "nombre": "nazareno",
+   "apellido": "mansilla",
+   "dni": "46985403",
+   "licencia": "A2",
+   "vencimiento_licencia": "2025-11-1"
+}
