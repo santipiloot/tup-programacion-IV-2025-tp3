@@ -1,9 +1,9 @@
 import Viaje from "../models/viajes.js";
 
-const viajeController = {
-    getAll: async (req, res) => {
+const viajeControlador = {
+    obtenerTodos: async (req, res) => {
         try {
-            const viajes = await Viaje.getAll();
+            const viajes = await Viaje.obtenerTodos();
             res.status(200).json({ success: true, data: viajes });
 
         } catch (error) {
@@ -11,12 +11,12 @@ const viajeController = {
             res.status(500).json({ succes: false, message: "Error al obtener los viajes" })
         }
     },
-    create: async (req, res) => {
+    crear: async (req, res) => {
         try {
             const { vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino,
                 kilometros, observaciones } = req.body;
 
-            const viaje = await Viaje.create(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones);
+            const viaje = await Viaje.crear(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones);
 
             res.status(201).json({
                 success: true,
@@ -40,4 +40,4 @@ const viajeController = {
     },
 }
 
-export default viajeController
+export default viajeControlador;

@@ -1,9 +1,9 @@
 import Conductor from "../models/conductores.js"
 
-const conductorController = {
-    getAll: async (req, res) => {
+const conductorControlador = {
+    obtenerTodos: async (req, res) => {
         try {
-            const conductores = await Conductor.getAll();
+            const conductores = await Conductor.obtenerTodos();
             res.status(200).json({ success: true, data: conductores });
 
         } catch (error) {
@@ -11,11 +11,11 @@ const conductorController = {
             res.status(500).json({ success: false, mesage: "Error al obtener los conductores" });
         }
     },
-    create: async (req, res) => {
+    crear: async (req, res) => {
         try {
             const { nombre, apellido, dni, licencia, vencimiento_licencia } = req.body;
 
-            const conductor = await Conductor.create(nombre, apellido, dni, licencia, vencimiento_licencia);
+            const conductor = await Conductor.crear(nombre, apellido, dni, licencia, vencimiento_licencia);
 
             res.status(201).json({
                 success: true,
@@ -34,12 +34,12 @@ const conductorController = {
             res.status(500).json({ success: false, message: "Error al crear el conductor" })
         }
     },
-    update: async (req, res) => {
+    actualizar: async (req, res) => {
         try {
             const id = Number(req.params.id)
             const { nombre, apellido, dni, licencia, vencimiento_licencia } = req.body;
 
-            await Conductor.update(nombre, apellido, dni, licencia, vencimiento_licencia, id);
+            await Conductor.actualizar(nombre, apellido, dni, licencia, vencimiento_licencia, id);
 
             res
                 .status(200)
@@ -62,11 +62,11 @@ const conductorController = {
                 .json({ success: false, message: "Error al actualizar el conductor"})
         }
     },
-    delete: async (req, res) => {
+    eliminar: async (req, res) => {
     try {
       const id = Number(req.params.id)
 
-      Conductor.delete(id)
+      Conductor.eliminar(id)
 
       res.status(200).json({ success: true, data: id })
 
@@ -75,10 +75,10 @@ const conductorController = {
       res.status(500).json({ success: false, message: "Error al eliminar el conductor" })
     }
   },
-  getTotalKm: async (req, res) => {
+  obtenerKm: async (req, res) => {
     try {
       const id = Number(req.params.id);
-      const kilometros = await Conductor.getTotalKm(id)
+      const kilometros = await Conductor.obtenerKm(id)
 
       if (!kilometros) {
         return res.status(200).json({ success: true, data: 0 })
@@ -93,4 +93,4 @@ const conductorController = {
   }
 }
 
-export default conductorController
+export default conductorControlador

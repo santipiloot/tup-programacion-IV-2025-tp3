@@ -1,12 +1,12 @@
 import { db } from "../database.js"
 
 const Viaje = {
-    getAll: async () => {
+    obtenerTodos: async () => {
         const sql = "SELECT * FROM viajes"
         const [rows] = await db.execute(sql)
         return rows;
     },
-    create: async (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, obervaciones) => {
+    crear: async (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, obervaciones) => {
         const params = [vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, obervaciones]
 
         const sql = "INSERT INTO viajes (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

@@ -1,9 +1,9 @@
 import express from "express"
-import viajeController from "../controllers/viajes.js"
+import viajeControlador from "../controllers/viajes.js"
 
 const router = express.Router()
 
-router.get("/", viajeController.getAll)
-router.post("/", viajeController.create);
+router.get("/", viajeControlador.obtenerTodos)
+router.post("/", viajeControlador.crear);
 
 export default router;

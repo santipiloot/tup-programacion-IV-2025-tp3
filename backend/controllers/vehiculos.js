@@ -1,9 +1,9 @@
 import Vehiculo from "../models/vehiculos.js";
 
-const vehiculoController = {
-  getAll: async (req, res) => {
+const vehiculoControlador = {
+  obtenerTodos: async (req, res) => {
     try {
-      const vehiculos = await Vehiculo.getAll();
+      const vehiculos = await Vehiculo.obtenerTodos();
       res.status(200).json({ success: true, data: vehiculos });
 
     } catch (error) {
@@ -11,11 +11,11 @@ const vehiculoController = {
       res.status(500).json({ success: false, message: "Error al obtener vehículos" });
     }
   },
-  create: async (req, res) => {
+  crear: async (req, res) => {
     try {
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
 
-      const vehiculo = await Vehiculo.create(marca, modelo, patente, anio, capacidad_carga);
+      const vehiculo = await Vehiculo.crear(marca, modelo, patente, anio, capacidad_carga);
 
       res.status(201).json({
         success: true,
@@ -34,12 +34,12 @@ const vehiculoController = {
       res.status(500).json({ success: false, message: "Error al crear el vehiculo" })
     }
   },
-  update: async (req, res) => {
+  actualizar: async (req, res) => {
     try {
       const id = Number(req.params.id)
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
 
-      await Vehiculo.update(marca, modelo, patente, anio, capacidad_carga, id);
+      await Vehiculo.actualizar(marca, modelo, patente, anio, capacidad_carga, id);
 
       res
         .status(200)
@@ -62,11 +62,11 @@ const vehiculoController = {
         .json({ success: false, message: "Error al actualizar el vehiculo" })
     }
   },
-  delete: async (req, res) => {
+  eliminar: async (req, res) => {
     try {
       const id = Number(req.params.id)
 
-      Vehiculo.delete(id)
+      Vehiculo.eliminar(id)
 
       res.status(200).json({ success: true, data: id })
 
@@ -75,10 +75,10 @@ const vehiculoController = {
       res.status(500).json({ success: false, message: "Error al eliminar el vehiculo" })
     }
   },
-  getTotalKm: async (req, res) => {
+  obtenerKm: async (req, res) => {
     try {
       const id = Number(req.params.id);
-      const kilometros = await Vehiculo.getTotalKm(id)
+      const kilometros = await Vehiculo.obtenerKm(id)
 
       if (!kilometros) {
         return res.status(200).json({ success: true, data: 0 })
@@ -93,4 +93,4 @@ const vehiculoController = {
   }
 };
 
-export default vehiculoController;
+export default vehiculoControlador;

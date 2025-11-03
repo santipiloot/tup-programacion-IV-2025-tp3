@@ -1,12 +1,12 @@
 import express from "express"
-import conductorController from "../controllers/conductores.js"
+import conductorControlador from "../controllers/conductores.js"
 
 const router = express.Router();
 
-router.get("/", conductorController.getAll)
-router.get("/kilometros/:id", conductorController.getTotalKm);
-router.post("/", conductorController.create)
-router.put("/:id", conductorController.update)
-router.delete("/:id", conductorController.delete)
+router.get("/", conductorControlador.obtenerTodos)
+router.get("/kilometros/:id", conductorControlador.obtenerKm);
+router.post("/", conductorControlador.crear)
+router.put("/:id", conductorControlador.actualizar)
+router.delete("/:id", conductorControlador.eliminar)
 
 export default router;
