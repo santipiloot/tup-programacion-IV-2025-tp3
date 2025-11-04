@@ -20,6 +20,9 @@ const Viaje = {
         const sql = "UPDATE viajes SET vehiculo_id=?, conductor_id=?, fecha_salida=?, fecha_llegada=?, origen=?, destino=?, kilometros=?, observaciones=? WHERE id=?"
 
         await db.execute(sql, params)
+    },
+    eliminar: async (id) => {
+        await db.execute("DELETE FROM viajes WHERE id=?", [id])
     }
      
 }
