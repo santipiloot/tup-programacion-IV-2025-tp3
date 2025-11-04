@@ -32,3 +32,6 @@ Content-Type: application/json
     "kilometros": 500, 
     "observaciones": "Sin observaciones"
 }
+
+### Eliminar un viaje
+DELETE {{url}}/viajes/4
