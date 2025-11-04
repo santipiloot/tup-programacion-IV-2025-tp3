@@ -5,5 +5,6 @@ const router = express.Router()
 
 router.get("/", viajeControlador.obtenerTodos)
 router.post("/", viajeControlador.crear);
+router.put("/:id", viajeControlador.actualizar);
 
 export default router;
