@@ -1,7 +1,10 @@
 @url=http://localhost:3000
 
-### Obtener todos los conductores
+### Obtener todos los viajes
 GET {{url}}/viajes
+
+### Obtener todos los viajes de un conductor o vehiculo
+GET {{url}}/viajes?conductor=1&vehiculo=2
 
 ### Crear un nuevo viaje 
 POST {{url}}/viajes
