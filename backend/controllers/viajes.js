@@ -77,6 +77,43 @@ const viajeControlador = {
             console.error(error);
             res.status(500).json({ success: false, message: "Error al eliminar el viaje" })
         }
+    },
+    obtener: async (req, res) => {
+        try {
+            const { conductor, vehiculo } = req.query
+
+            let sql = "SELECT c.nombre AS nombre_conductor, c.apellido AS apellido_conductor, c.dni AS dni_conductor," +
+                " v.marca, v.modelo, v.patente," +
+                " vj.id AS id_viaje, vj.fecha_salida, vj.fecha_llegada, vj.origen, vj.destino, vj.kilometros, vj.observaciones" +
+                " FROM viajes vj" +
+                " JOIN conductores c ON c.id = vj.conductor_id JOIN vehiculos v ON v.id = vj.vehiculo_id"
+                
+            
+            const params = []
+
+            if (conductor || vehiculo) {
+                sql += " WHERE"
+                if (conductor) {
+                    sql += " vj.conductor_id = ?"
+                    params.push(conductor)
+                }
+                if (vehiculo) {
+                    if (conductor) {
+                        sql += " AND"
+                    }
+                    sql += " vj.vehiculo_id = ?"
+                    params.push(vehiculo)
+                }
+
+            }
+            const viajes = await Viaje.obtener(sql, params)
+
+            res.status(200).json({ success: true, data: viajes })
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, message: "Error al obtener los viajes del conductor" })
+        }
     }
 }
 

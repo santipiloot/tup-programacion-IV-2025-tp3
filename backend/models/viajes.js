@@ -1,10 +1,9 @@
 import { db } from "../database.js"
 
 const Viaje = {
-    obtenerTodos: async () => {
-        const sql = "SELECT * FROM viajes"
-        const [rows] = await db.execute(sql)
-        return rows;
+    obtener: async (sql, params) => {
+        const [rows] = await db.execute(sql, params)
+        return rows
     },
     crear: async (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones) => {
         const params = [vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones]
@@ -24,7 +23,6 @@ const Viaje = {
     eliminar: async (id) => {
         await db.execute("DELETE FROM viajes WHERE id=?", [id])
     }
-     
 }
 
 export default Viaje
