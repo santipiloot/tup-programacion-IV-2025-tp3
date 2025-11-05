@@ -1,0 +1,11 @@
+@url=http://localhost:3000
+
+### Registro
+POST {{url}}/usuarios/registro
+Content-Type: application/json
+
+{
+    "nombre": "Maxijhfdskfds",
+    "email": "maxipil23232ot@gmadasdsail.com",
+    "contrasenia": "admin1234ddsaas"
+}
