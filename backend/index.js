@@ -3,6 +3,7 @@ import { conectarDB } from "./database.js";
 import vehiculosRoutes from "./routes/vehiculos.js"
 import conductoresRoutes from "./routes/conductores.js";
 import viajesRoutes from "./routes/viajes.js";
+import authConfig  from "./auth.js";
 
 conectarDB();
 
@@ -10,6 +11,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+authConfig();
 
 app.get("/", (req, res) => {
   // Responder con string
