@@ -3,7 +3,8 @@ import { conectarDB } from "./database.js";
 import vehiculosRoutes from "./routes/vehiculos.js"
 import conductoresRoutes from "./routes/conductores.js";
 import viajesRoutes from "./routes/viajes.js";
-import authConfig  from "./auth.js";
+import usuariosRoutes from "./routes/usuarios.js";
+import authConfig  from "./middlewares/auth.js";
 
 conectarDB();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/vehiculos", vehiculosRoutes);
 app.use("/conductores", conductoresRoutes)
 app.use("/viajes", viajesRoutes)
+app.use("/usuarios", usuariosRoutes)
 
 app.listen(port, () => {
     console.log(`La app esta funcionando en el puerto ${port}`);
