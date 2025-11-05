@@ -4,7 +4,7 @@
 GET {{url}}/conductores
 
 ###
-GET {{url}}/conductores/kilometros/2
+GET {{url}}/conductores/kilometros/1
 
 ### Crear un nuevo vehiculo 
 POST {{url}}/conductores
@@ -13,9 +13,9 @@ Content-Type: application/json
 {
    "nombre": "nazareno",
    "apellido": "mansilla",
-   "dni": "46985403",
+   "dni": "47212835",
    "licencia": "A2",
-   "vencimiento_licencia": "2025-11-1"
+   "vencimiento_licencia": "2025-11-06"
 }
 
 ### Crear un nuevo conductor
@@ -25,9 +25,9 @@ Content-Type: application/json
 {
    "nombre": "pedro",
    "apellido": "luque",
-   "dni": "43567856",
+   "dni": "47212835",
    "licencia": "A1",
-   "vencimiento_licencia": "2025-11-3"
+   "vencimiento_licencia": "2025-11-06"
 }
 
 ### Eliminar un vehiculo

@@ -13,19 +13,19 @@ Content-Type: application/json
 {
     "marca": "mercedes benz",
     "modelo": "t340",
-    "patente": "tremp3", 
-    "anio": "2019",
+    "patente": "tremp321", 
+    "anio": 2025,
     "capacidad_carga": 500
 }
 
 ### Actualizar un vehiculo ya existente
-PUT {{url}}/vehiculos/1
+PUT {{url}}/vehiculos/2
 Content-Type: application/json
 
 {
     "marca": "corolla",
     "modelo": "xei",
-    "patente": "pap 234", 
+    "patente": "tremp321", 
     "anio": "2009",
     "capacidad_carga": 150
 }

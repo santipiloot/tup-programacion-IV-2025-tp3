@@ -22,6 +22,10 @@ const Conductor = {
         const sql = "SELECT SUM(kilometros) AS total_km FROM viajes WHERE conductor_id=?"
         const [rows] = await db.execute(sql, [id])
         return rows[0].total_km
+    },
+    obtenerDni: async (dni) => {
+        const [rows] = await db.execute("SELECT * FROM conductores WHERE dni=?", [dni])
+        return rows
     }
 }
 

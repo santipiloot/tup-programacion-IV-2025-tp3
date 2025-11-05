@@ -1,4 +1,3 @@
-import Vehiculo from "../models/vehiculos.js";
 import Viaje from "../models/viajes.js";
 
 const viajeControlador = {

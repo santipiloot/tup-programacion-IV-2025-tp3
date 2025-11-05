@@ -15,6 +15,13 @@ const vehiculoControlador = {
     try {
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
 
+      const verificacionPatente = await Vehiculo.obtenerPatente(patente);
+      
+      if (verificacionPatente.length > 0) {
+        return res.status(400)
+        .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+      }
+
       const vehiculo = await Vehiculo.crear(marca, modelo, patente, anio, capacidad_carga);
 
       res.status(201).json({
@@ -38,6 +45,13 @@ const vehiculoControlador = {
     try {
       const id = Number(req.params.id)
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
+
+      const verificacionPatente = await Vehiculo.obtenerPatente(patente);
+      
+      if (verificacionPatente.length > 0) {
+        return res.status(400)
+        .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+      }
 
       await Vehiculo.actualizar(marca, modelo, patente, anio, capacidad_carga, id);
 
