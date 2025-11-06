@@ -9,7 +9,7 @@ const viajeControlador = {
 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ succes: false, message: "Error al obtener los viajes" })
+            res.status(500).json({ success: false, message: "Error al obtener los viajes" })
         }
     },
     crear: async (req, res) => {
