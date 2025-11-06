@@ -5,7 +5,17 @@ POST {{url}}/usuarios/registro
 Content-Type: application/json
 
 {
-    "nombre": "Maxijhfdskfds",
-    "email": "maxipil23232ot@gmadasdsail.com",
-    "contrasenia": "admin1234ddsaas"
+    "nombre": "Elio",
+    "email": "eliopilot@gmail.com",
+    "contrasenia": "admin1234"
 }
+
+### Login
+POST {{url}}/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "eliopilot@gmail.com",
+    "contrasenia": "admin1234"
+}
+
