@@ -1,6 +1,7 @@
 import Usuario from "../models/usuarios.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js";
 
 const usuarioControlador = {
     registro: async (req, res) => {
@@ -13,31 +14,37 @@ const usuarioControlador = {
 
             const passwordHasheada = await bcrypt.hash(contrasenia, 12);
 
-            const usuario = await Usuario.registro(nombre, email, passwordHasheada);
+            const nombreForm = formatearMinusculas(nombre)
+            const emailForm = formatearMinusculas(email)
+
+            const usuario = await Usuario.registro(nombreForm, emailForm, passwordHasheada);
 
             res.status(201).json({
                 success: true, data: {
                     id: usuario.insertId,
-                    nombre,
-                    email
+                    nombre: nombreForm,
+                    email: emailForm
                 }
             })
         } catch (error) {
             console.error(error)
-            res.status(500).json({ success: false, message: "Error al registrar al usuario " })
+            res.status(500).json({ success: false, message: "Error al registrar al usuario" })
         }
     },
     login: async (req, res) => {
         try {
             const { email, contrasenia } = req.body;
-            const usuario = await Usuario.obtenerUsuario(email);
+
+            const emailForm = formatearMinusculas(email)
+
+            const usuario = await Usuario.obtenerUsuario(emailForm);
 
             if (!usuario) {
                 return res.status(400).json({ success: false, message: "Email o contraseña incorrecta" });
             }
 
-            const coincide = await bcrypt.compare(contrasenia, usuario.password_hash);
-            if (!coincide) {
+            const comparacion = await bcrypt.compare(contrasenia, usuario.password_hash);
+            if (!comparacion) {
                 return res.status(400).json({ success: false, message: "Email o contraseña incorrecta" });
             }
 
