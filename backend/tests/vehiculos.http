@@ -3,7 +3,7 @@
 ### Consultar todos los vehiculos
 GET {{url}}/vehiculos
 
-###
+### Obtener los km totales de un vehiculo
 GET {{url}}/vehiculos/kilometros/1
 
 ### Crear un nuevo vehiculo 
@@ -11,24 +11,24 @@ POST {{url}}/vehiculos
 Content-Type: application/json
 
 {
-    "marca": "fiat",
-    "modelo": "siena 12",
-    "patente": "pap 345", 
-    "anio": 2017,
-    "capacidad_carga": 200
+    "marca": "ford",
+    "modelo": "mustang",
+    "patente": "hrt 354", 
+    "anio": 2024,
+    "capacidad_carga": 400
 }
 
-### Actualizar un vehiculo ya existente
-PUT {{url}}/vehiculos/18
+### Actualizar un vehiculo
+PUT {{url}}/vehiculos/1
 Content-Type: application/json
 
 {
-    "marca": "corolla",
-    "modelo": "xei",
-    "patente": "ehb 385", 
-    "anio": 2009,
+    "marca": "fiat",
+    "modelo": "siena 12",
+    "patente": "h43 354", 
+    "anio": 2017,
     "capacidad_carga": 150
 }
 
 ### Eliminar un vehiculo
-DELETE {{url}}/vehiculos/18
+DELETE {{url}}/vehiculos/1

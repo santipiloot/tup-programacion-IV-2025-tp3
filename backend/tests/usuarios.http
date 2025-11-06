@@ -5,9 +5,9 @@ POST {{url}}/usuarios/registro
 Content-Type: application/json
 
 {
-    "nombre": "Elio",
-    "email": "eliopilot@gmail.com",
-    "contrasenia": "admin1234"
+    "nombre": "santino",
+    "email": "santino.pilot@gmail.com",
+    "contrasenia": "s1234567"
 }
 
 ### Login
@@ -15,7 +15,7 @@ POST {{url}}/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "eliopilot@gmail.com",
-    "contrasenia": "admin1234"
+    "email": "santino.pilot@gmail.com",
+    "contrasenia": "s1234567"
 }
 

@@ -11,7 +11,7 @@ POST {{url}}/viajes
 Content-Type: application/json
 
 {
-    "vehiculo_id": 1, 
+    "vehiculo_id": 20, 
     "conductor_id": 1,
     "fecha_salida": "2025-11-01", 
     "fecha_llegada": "2025-11-05", 
@@ -22,14 +22,14 @@ Content-Type: application/json
 }
 
 ### Actualizar datos de un viaje 
-PUT {{url}}/viajes/5
+PUT {{url}}/viajes/1
 Content-Type: application/json
 
 {
     "vehiculo_id": 4, 
     "conductor_id": 1,
-    "fecha_salida": "2025-11-1", 
-    "fecha_llegada": "2025-11-5", 
+    "fecha_salida": "2025-11-06", 
+    "fecha_llegada": "2025-11-10", 
     "origen": "Casa", 
     "destino": "Universidad", 
     "kilometros": 500, 
@@ -37,4 +37,4 @@ Content-Type: application/json
 }
 
 ### Eliminar un viaje
-DELETE {{url}}/viajes/7
+DELETE {{url}}/viajes/2

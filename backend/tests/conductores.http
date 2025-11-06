@@ -1,34 +1,35 @@
 @url=http://localhost:3000
 
+
 ### Obtener todos los conductores
 GET {{url}}/conductores
 
-###
+### Obtener los kilometros hecho por un conductor
 GET {{url}}/conductores/kilometros/1
 
-### Crear un nuevo vehiculo 
+### Crear un nuevo conductor
 POST {{url}}/conductores
 Content-Type: application/json
 
 {
-   "nombre": "santino",
+   "nombre": "elio",
    "apellido": "pilot",
-   "dni": "47212835",
-   "licencia": "A2",
-   "vencimiento_licencia": "2026-01-17"
+   "dni": "43567835",
+   "licencia": "comun",
+   "vencimiento_licencia": "2025-12-25"
 }
 
-### Crear un nuevo conductor
-PUT {{url}}/conductores/1
+### Actualizar un conductor
+PUT {{url}}/conductores/2
 Content-Type: application/json
 
 {
-   "nombre": "santino",
+   "nombre": "elio",
    "apellido": "pilot",
-   "dni": "46212835",
-   "licencia": "A1",
-   "vencimiento_licencia": "2026-01-20"
+   "dni": "43567835",
+   "licencia": "profesional",
+   "vencimiento_licencia": "2025-12-25"
 }
 
-### Eliminar un vehiculo
-DELETE {{url}}/conductores/6
+### Eliminar un conductor
+DELETE {{url}}/conductores/2
