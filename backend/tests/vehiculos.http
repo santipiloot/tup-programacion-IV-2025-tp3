@@ -4,31 +4,31 @@
 GET {{url}}/vehiculos
 
 ###
-GET {{url}}/vehiculos/kilometros/2
+GET {{url}}/vehiculos/kilometros/1
 
 ### Crear un nuevo vehiculo 
 POST {{url}}/vehiculos
 Content-Type: application/json
 
 {
-    "marca": "mercedes benz",
-    "modelo": "t340",
-    "patente": "tremp321", 
-    "anio": 2025,
-    "capacidad_carga": 500
+    "marca": "fiat",
+    "modelo": "siena 12",
+    "patente": "pap 345", 
+    "anio": 2017,
+    "capacidad_carga": 200
 }
 
 ### Actualizar un vehiculo ya existente
-PUT {{url}}/vehiculos/2
+PUT {{url}}/vehiculos/18
 Content-Type: application/json
 
 {
     "marca": "corolla",
     "modelo": "xei",
-    "patente": "tremp321", 
-    "anio": "2009",
+    "patente": "ehb 385", 
+    "anio": 2009,
     "capacidad_carga": 150
 }
 
 ### Eliminar un vehiculo
-DELETE {{url}}/vehiculos/1
+DELETE {{url}}/vehiculos/18

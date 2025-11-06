@@ -14,3 +14,11 @@ export const verificarValidaciones = (req, res, next) => {
   }
   next();
 };
+
+export const formatearMinusculas = (dato) => {
+  if (typeof dato === "string") {
+    return dato.toLowerCase().trim()
+  } else {
+    return dato;
+  }
+};

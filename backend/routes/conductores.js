@@ -5,7 +5,7 @@ import { verificarValidaciones, validarId } from "../middlewares/validaciones/ve
 
 const router = express.Router();
 
-router.get("/", conductorControlador.obtenerTodos)
+router.get("/", conductorControlador.obtener)
 router.get("/kilometros/:id", [validarId, verificarValidaciones], conductorControlador.obtenerKm);
 router.post("/", [validarBody , verificarValidaciones], conductorControlador.crear)
 router.put("/:id", [validarId, validarBody , verificarValidaciones], conductorControlador.actualizar)

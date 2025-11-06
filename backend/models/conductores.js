@@ -1,7 +1,7 @@
 import { db } from "../database.js";
 
 const Conductor = {
-    obtenerTodos: async () => {
+    obtener: async () => {
         const sql = "SELECT * FROM conductores"
         const [rows] = await db.execute(sql)
         return rows;
@@ -23,9 +23,9 @@ const Conductor = {
         const [rows] = await db.execute(sql, [id])
         return rows[0].total_km
     },
-    obtenerDni: async (dni) => {
+    obtenerPorDni: async (dni) => {
         const [rows] = await db.execute("SELECT * FROM conductores WHERE dni=?", [dni])
-        return rows
+        return rows[0]
     }
 }
 

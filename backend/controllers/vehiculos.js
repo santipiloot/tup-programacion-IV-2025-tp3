@@ -1,4 +1,5 @@
 import Vehiculo from "../models/vehiculos.js";
+import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js"
 
 const vehiculoControlador = {
   obtenerTodos: async (req, res) => {
@@ -15,22 +16,26 @@ const vehiculoControlador = {
     try {
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
 
-      const verificacionPatente = await Vehiculo.obtenerPatente(patente);
-      
-      if (verificacionPatente.length > 0) {
+      const marcaForm = formatearMinusculas(marca)
+      const modeloForm = formatearMinusculas(modelo)
+      const patenteForm = formatearMinusculas(patente)
+
+      const verificacionPatente = await Vehiculo.obtenerPatente(patenteForm);
+
+      if (verificacionPatente) {
         return res.status(400)
-        .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+          .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
       }
 
-      const vehiculo = await Vehiculo.crear(marca, modelo, patente, anio, capacidad_carga);
+      const vehiculo = await Vehiculo.crear(marcaForm, modeloForm, patenteForm, anio, capacidad_carga);
 
       res.status(201).json({
         success: true,
         data: {
           id: vehiculo.insertId,
-          marca,
-          modelo,
-          patente,
+          marca: marcaForm,
+          modelo: modeloForm,
+          patente: patenteForm,
           anio,
           capacidad_carga
         }
@@ -46,14 +51,18 @@ const vehiculoControlador = {
       const id = Number(req.params.id)
       const { marca, modelo, patente, anio, capacidad_carga } = req.body;
 
-      const verificacionPatente = await Vehiculo.obtenerPatente(patente);
-      
-      if (verificacionPatente.length > 0) {
+      const marcaForm = formatearMinusculas(marca)
+      const modeloForm = formatearMinusculas(modelo)
+      const patenteForm = formatearMinusculas(patente)
+
+      const verificacionPatente = await Vehiculo.obtenerPatente(patenteForm);
+
+      if (verificacionPatente && verificacionPatente.id !== id) {
         return res.status(400)
-        .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+          .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
       }
 
-      await Vehiculo.actualizar(marca, modelo, patente, anio, capacidad_carga, id);
+      await Vehiculo.actualizar(marcaForm, modeloForm, patenteForm, anio, capacidad_carga, id);
 
       res
         .status(200)
@@ -61,9 +70,9 @@ const vehiculoControlador = {
           success: true,
           data: {
             id,
-            marca,
-            modelo,
-            patente,
+            marca: marcaForm,
+            modelo: modeloForm,
+            patente: patenteForm,
             anio,
             capacidad_carga
           }
@@ -80,7 +89,7 @@ const vehiculoControlador = {
     try {
       const id = Number(req.params.id)
 
-      Vehiculo.eliminar(id)
+      await Vehiculo.eliminar(id)
 
       res.status(200).json({ success: true, data: id })
 

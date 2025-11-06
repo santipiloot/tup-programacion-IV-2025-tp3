@@ -10,7 +10,7 @@ export const validarBody = [
     .notEmpty()
     .isLength({ min: 2 }),
   body("patente")
-    .isAlphanumeric("es-ES", { ignore: " " })
+    .isAlphanumeric("es-ES", { ignore: " -" })
     .notEmpty()
     .isLength({ min: 5 }),
   body("anio")

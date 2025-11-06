@@ -13,7 +13,8 @@ const Vehiculo = {
     },
     actualizar: async (marca, modelo, patente, anio, capacidad_carga, id) => {
         const sql = "UPDATE vehiculos SET marca=?, modelo=?, patente=?, anio=?, capacidad_carga=? WHERE id=?";
-        await db.execute(sql, [marca, modelo, patente, anio, capacidad_carga, id])
+        const [result] = await db.execute(sql, [marca, modelo, patente, anio, capacidad_carga, id])
+        return result
     }, 
     eliminar: async (id) => { 
         await db.execute("DELETE FROM vehiculos WHERE id=?", [id]);
@@ -25,7 +26,7 @@ const Vehiculo = {
     },
     obtenerPatente: async (patente) => {
         const [rows] = await db.execute("SELECT * FROM vehiculos WHERE patente=?", [patente])
-        return rows
+        return rows[0]
     }
 }
 

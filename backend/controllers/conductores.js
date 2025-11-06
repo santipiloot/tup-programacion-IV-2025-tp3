@@ -1,35 +1,39 @@
 import Conductor from "../models/conductores.js"
+import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js"
 
 const conductorControlador = {
-  obtenerTodos: async (req, res) => {
+  obtener: async (req, res) => {
     try {
-      const conductores = await Conductor.obtenerTodos();
+      const conductores = await Conductor.obtener();
       res.status(200).json({ success: true, data: conductores });
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, mesage: "Error al obtener los conductores" });
+      res.status(500).json({ success: false, message: "Error al obtener los conductores" });
     }
   },
   crear: async (req, res) => {
     try {
       const { nombre, apellido, dni, licencia, vencimiento_licencia } = req.body;
 
-      const verificacionDni = await Conductor.obtenerDni(dni);
+      const verificacionDni = await Conductor.obtenerPorDni(dni);
 
-      if (verificacionDni.length > 0) {
+      if (verificacionDni) {
         return res.status(400)
           .json({ success: false, message: "Ya hay un conductor registrado con ese DNI" });
       }
 
-      const conductor = await Conductor.crear(nombre, apellido, dni, licencia, vencimiento_licencia);
+      const nombreForm = formatearMinusculas(nombre)
+      const apellidoForm = formatearMinusculas(apellido)
+
+      const conductor = await Conductor.crear(nombreForm, apellidoForm, dni, licencia, vencimiento_licencia);
 
       res.status(201).json({
         success: true,
         data: {
           id: conductor.insertId,
-          nombre,
-          apellido,
+          nombre: nombreForm,
+          apellido: apellidoForm,
           dni,
           licencia,
           vencimiento_licencia
@@ -46,14 +50,17 @@ const conductorControlador = {
       const id = Number(req.params.id)
       const { nombre, apellido, dni, licencia, vencimiento_licencia } = req.body;
 
-      const verificacionDni = await Conductor.obtenerDni(dni);
+      const conductor = await Conductor.obtenerPorDni(dni);
 
-      if (verificacionDni.length > 0) {
+      const nombreForm = formatearMinusculas(nombre)
+      const apellidoForm = formatearMinusculas(apellido)
+
+      if (conductor && conductor.id != id) {
         return res.status(400)
           .json({ success: false, message: "Ya hay un conductor registrado con ese DNI" });
       }
-      
-      await Conductor.actualizar(nombre, apellido, dni, licencia, vencimiento_licencia, id);
+
+      await Conductor.actualizar(nombreForm, apellidoForm, dni, licencia, vencimiento_licencia, id);
 
       res
         .status(200)
@@ -61,8 +68,8 @@ const conductorControlador = {
           success: true,
           data: {
             id,
-            nombre,
-            apellido,
+            nombre: nombreForm,
+            apellido: apellidoForm,
             dni,
             licencia,
             vencimiento_licencia
@@ -80,7 +87,7 @@ const conductorControlador = {
     try {
       const id = Number(req.params.id)
 
-      Conductor.eliminar(id)
+      await Conductor.eliminar(id)
 
       res.status(200).json({ success: true, data: id })
 

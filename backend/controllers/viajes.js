@@ -1,9 +1,10 @@
+import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js";
 import Viaje from "../models/viajes.js";
 
 const viajeControlador = {
     obtenerTodos: async (req, res) => {
         try {
-            const viajes = await Viaje.obtenerTodos();
+            const viajes = await Viaje.obtener();
             res.status(200).json({ success: true, data: viajes });
 
         } catch (error) {
@@ -16,7 +17,11 @@ const viajeControlador = {
             const { vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino,
                 kilometros, observaciones } = req.body;
 
-            const viaje = await Viaje.crear(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones);
+            const origenForm = formatearMinusculas(origen)
+            const destinoForm = formatearMinusculas(destino)
+            const observacionesForm = formatearMinusculas(observaciones)
+
+            const viaje = await Viaje.crear(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origenForm, destinoForm, kilometros, observacionesForm);
 
             res.status(201).json({
                 success: true,
@@ -26,10 +31,10 @@ const viajeControlador = {
                     conductor_id,
                     fecha_salida,
                     fecha_llegada,
-                    origen,
-                    destino,
+                    origen: origenForm,
+                    destino: destinoForm,
                     kilometros,
-                    observaciones
+                    observaciones: observacionesForm
                 }
             })
 
@@ -43,7 +48,11 @@ const viajeControlador = {
             const id = Number(req.params.id)
             const { vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones } = req.body;
 
-            await Viaje.actualizar(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones, id)
+            const origenForm = formatearMinusculas(origen)
+            const destinoForm = formatearMinusculas(destino)
+            const observacionesForm = formatearMinusculas(observaciones)
+
+            await Viaje.actualizar(vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origenForm, destinoForm, kilometros, observacionesForm, id)
 
             res.status(200).json({
                 success: true, data: {
@@ -52,10 +61,10 @@ const viajeControlador = {
                     conductor_id,
                     fecha_llegada,
                     fecha_salida,
-                    origen,
-                    destino,
+                    origen: origenForm,
+                    destino: destinoForm,
                     kilometros,
-                    observaciones
+                    observaciones: observacionesForm
                 }
             })
 

@@ -45,7 +45,7 @@ export const validarBody = [
     .toFloat(),
   body("observaciones")
     .notEmpty()
-    .isAlphanumeric("es-ES", {ignore: " "})
+    .isAlphanumeric("es-ES", {ignore: " .,-/"})
     .isLength({ max: 255 }),
 ];
 

@@ -11,24 +11,24 @@ POST {{url}}/conductores
 Content-Type: application/json
 
 {
-   "nombre": "nazareno",
-   "apellido": "mansilla",
+   "nombre": "santino",
+   "apellido": "pilot",
    "dni": "47212835",
    "licencia": "A2",
-   "vencimiento_licencia": "2025-11-06"
+   "vencimiento_licencia": "2026-01-17"
 }
 
 ### Crear un nuevo conductor
-PUT {{url}}/conductores/2
+PUT {{url}}/conductores/1
 Content-Type: application/json
 
 {
-   "nombre": "pedro",
-   "apellido": "luque",
-   "dni": "47212835",
+   "nombre": "santino",
+   "apellido": "pilot",
+   "dni": "46212835",
    "licencia": "A1",
-   "vencimiento_licencia": "2025-11-06"
+   "vencimiento_licencia": "2026-01-20"
 }
 
 ### Eliminar un vehiculo
-DELETE {{url}}/conductores/2
+DELETE {{url}}/conductores/6

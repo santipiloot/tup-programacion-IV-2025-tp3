@@ -4,7 +4,7 @@
 GET {{url}}/viajes
 
 ### Obtener todos los viajes de un conductor o vehiculo
-GET {{url}}/viajes?conductor=1&vehiculo=2
+GET {{url}}/viajes?conductor=2&vehiculo=2
 
 ### Crear un nuevo viaje 
 POST {{url}}/viajes
@@ -37,4 +37,4 @@ Content-Type: application/json
 }
 
 ### Eliminar un viaje
-DELETE {{url}}/viajes/1
+DELETE {{url}}/viajes/7
