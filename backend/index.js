@@ -5,6 +5,7 @@ import conductoresRoutes from "./routes/conductores.js";
 import viajesRoutes from "./routes/viajes.js";
 import usuariosRoutes from "./routes/usuarios.js";
 import authConfig  from "./middlewares/auth.js";
+import { verificarAutenticacion } from "./middlewares/auth.js";
 
 conectarDB();
 
@@ -20,10 +21,13 @@ app.get("/", (req, res) => {
   res.send("Hola mundo!");
 });
 
+app.use("/usuarios", usuariosRoutes)
+
+app.use(verificarAutenticacion)
+
 app.use("/vehiculos", vehiculosRoutes);
 app.use("/conductores", conductoresRoutes)
 app.use("/viajes", viajesRoutes)
-app.use("/usuarios", usuariosRoutes)
 
 app.listen(port, () => {
     console.log(`La app esta funcionando en el puerto ${port}`);
