@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken"
 import passport from "passport";
 import { Strategy, ExtractJwt } from "passport-jwt";
 
