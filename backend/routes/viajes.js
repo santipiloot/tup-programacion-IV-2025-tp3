@@ -7,6 +7,7 @@ import { validarBody, validarQuerys } from "../middlewares/validaciones/viajes-v
 const router = express.Router()
 
 router.get("/", [validarQuerys, verificarValidaciones], viajeControlador.obtener)
+router.get("/:id", [validarId, verificarValidaciones], viajeControlador.obtenerPorId)
 router.post("/", [validarBody, verificarValidaciones], viajeControlador.crear);
 router.put("/:id", [validarId, validarBody, verificarValidaciones], viajeControlador.actualizar);
 router.delete("/:id", [validarId, verificarValidaciones], viajeControlador.eliminar);

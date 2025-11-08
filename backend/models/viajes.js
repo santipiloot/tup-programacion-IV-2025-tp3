@@ -22,6 +22,10 @@ const Viaje = {
     },
     eliminar: async (id) => {
         await db.execute("DELETE FROM viajes WHERE id=?", [id])
+    },
+    obtenerPorId: async (id) => {
+        const [rows] = await db.execute("SELECT * FROM viajes WHERE id=?", [id])
+        return rows[0]
     }
 }
 
