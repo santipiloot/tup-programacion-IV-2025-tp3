@@ -8,9 +8,15 @@ export const Ingresar = () => {
   const [email, setEmail] = useState("");
   const [contrasenia, setContrasenia] = useState("");
 
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    login(email, contrasenia);
+    e.preventDefault()
+
+    const result = await login(email, contrasenia);
+
+    if (result.success) {
+      setOpen(false);
+    }
   };
 
   return (
@@ -28,6 +34,7 @@ export const Ingresar = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+
               <label htmlFor="contrasenia">Contraseña:</label>
               <input
                 name="contrasenia"
@@ -35,7 +42,16 @@ export const Ingresar = () => {
                 value={contrasenia}
                 onChange={(e) => setContrasenia(e.target.value)}
               />
-              {error && <p style={{ color: "red" }}>{error}</p>}
+
+              {error && error.length > 0 && (
+                <div className="error-messages">
+                  {error.split(",").map((msg, index) => (
+                    <p key={index} style={{ color: "red", margin: "2px 0" }}>
+                      {msg.trim()}
+                    </p>
+                  ))}
+                </div>
+              )}
             </fieldset>
             <footer>
               <div className="grid">

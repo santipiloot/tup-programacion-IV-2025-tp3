@@ -57,7 +57,15 @@ export const Registrar = () => {
                 onChange={(e) => setContrasenia(e.target.value)}
               />
 
-              {error && <p style={{ color: "red" }}>{error}</p>}
+              {error && error.length > 0 && (
+                <div className="error-messages">
+                  {error.split(",").map((msg, index) => (
+                    <p key={index} style={{ color: "red", margin: "2px 0" }}>
+                      {msg.trim()}
+                    </p>
+                  ))}
+                </div>
+              )}
             </fieldset>
 
             <footer>

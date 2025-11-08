@@ -14,17 +14,17 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, contrasenia) => {
         setError(null);
+
         try {
             const response = await fetch("http://localhost:3000/usuarios/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, contrasenia }),
             });
-
             const session = await response.json();
 
             if (!response.ok) {
-                throw new Error(session.error);
+                throw new Error(session.errores);
             }
 
             setToken(session.token);
@@ -36,7 +36,9 @@ export const AuthProvider = ({ children }) => {
             setError(err.message);
             return { success: false };
         }
-    };
+
+
+    }
 
     const registro = async (nombre, email, contrasenia) => {
         setError(null);
@@ -47,13 +49,13 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ nombre, email, contrasenia }),
             });
 
-            const result = await response.json();
+            const registro = await response.json();
 
-            if (!response.ok) {
-                throw new Error(result.error);
+             if (!response.ok) {
+                throw new Error(registro.errores);
             }
 
-            return { success: true, message: "Registro correcto"};
+            return { success: true, message: "Registro correcto" };
         } catch (err) {
             setError(err.message);
             return { success: false };
