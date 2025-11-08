@@ -1,0 +1,1 @@
+export const Vehiculos = () => <h1>Vehiculos</h1>
