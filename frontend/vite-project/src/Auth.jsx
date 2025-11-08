@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 const AuthContext = createContext(null);
 
@@ -37,6 +38,28 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const registro = async (nombre, email, contrasenia) => {
+        setError(null);
+        try {
+            const response = await fetch("http://localhost:3000/usuarios/registro", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nombre, email, contrasenia }),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error);
+            }
+
+            return { success: true, message: "Registro correcto"};
+        } catch (err) {
+            setError(err.message);
+            return { success: false };
+        }
+    };
+
     const logout = () => {
         setToken(null);
         setEmail(null);
@@ -63,6 +86,7 @@ export const AuthProvider = ({ children }) => {
                 isAuthenticated: !!token,
                 login,
                 logout,
+                registro,
                 fetchAuth,
             }}>
             {children}

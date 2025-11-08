@@ -1,5 +1,3 @@
-import { Ingresar } from "./Ingresar";
-
 export const Principal = () => {
   return (
     <>
