@@ -40,12 +40,12 @@ const usuarioControlador = {
             const usuario = await Usuario.obtenerUsuario(emailForm);
 
             if (!usuario) {
-                return res.status(400).json({ success: false, message: "Email o contraseña incorrecta" });
+                return res.status(400).json({ success: false, errores: ["Email o contraseña incorrecta"] });
             }
 
             const comparacion = await bcrypt.compare(contrasenia, usuario.password_hash);
             if (!comparacion) {
-                return res.status(400).json({ success: false, message: "Email o contraseña incorrecta" });
+                return res.status(400).json({ success: false, errores: ["Email o contraseña incorrecta"] });
             }
 
             const payload = { id: usuario.id, email: usuario.email }
