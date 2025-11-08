@@ -3,7 +3,7 @@ import { useAuth } from "../Auth";
 import { useNavigate } from "react-router-dom";
 
 export const Registrar = () => {
-  const { error, registro } = useAuth();
+  const { error, registro, setError } = useAuth();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -74,7 +74,10 @@ export const Registrar = () => {
                   type="button"
                   className="secondary"
                   value="Cancelar"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false) 
+                    setError(null)
+                  }}
                 />
                 <input type="submit" value="Registrarse" />
               </div>

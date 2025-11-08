@@ -85,6 +85,7 @@ export const AuthProvider = ({ children }) => {
                 token,
                 email,
                 error,
+                setError,
                 isAuthenticated: !!token,
                 login,
                 logout,

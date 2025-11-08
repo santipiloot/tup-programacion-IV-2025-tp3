@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../Auth";
 
 export const Ingresar = () => {
-  const { error, login } = useAuth();
+  const { error, login, setError } = useAuth();
 
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -59,7 +59,10 @@ export const Ingresar = () => {
                   type="button"
                   className="secondary"
                   value="Cancelar"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false)
+                    setError(null)
+                  }}
                 />
                 <input type="submit" value="Ingresar" />
               </div>
