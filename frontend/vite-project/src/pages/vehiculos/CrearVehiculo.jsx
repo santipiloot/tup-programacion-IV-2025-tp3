@@ -2,24 +2,24 @@ import { useState } from "react";
 import { useAuth } from "../../Auth";
 import { useNavigate } from "react-router";
 
-export const CrearConductor = () => {
+export const CrearVehiculo = () => {
   const { fetchAuth } = useAuth();
   const navigate = useNavigate();
   const [errores, setErrores] = useState([]);
 
   const [values, setValues] = useState({
-    nombre: "",
-    apellido: "",
-    dni: "",
-    licencia: "",
-    vencimiento_licencia: "",
+    marca: "",
+    modelo: "",
+    patente: "",
+    anio: "",
+    capacidad_carga: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrores([]);
 
-    const response = await fetchAuth("http://localhost:3000/conductores", {
+    const response = await fetchAuth("http://localhost:3000/vehiculos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -28,54 +28,56 @@ export const CrearConductor = () => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      setErrores(data.errores);
-      return;
+      if (response.status === 400) {
+        return setErrores(data.errores);
+      }
+      return window.alert("Error al crear el vehiculo");
     }
 
-    navigate("/conductores");
+    navigate("/vehiculos");
   };
 
   return (
     <article>
-      <h2>Crear conductor</h2>
+      <h2>Crear vehiculo</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <label>Nombre</label>
+          <label>Marca</label>
           <input
             required
-            value={values.nombre}
-            onChange={(e) => setValues({ ...values, nombre: e.target.value })}
+            value={values.marca}
+            onChange={(e) => setValues({ ...values, marca: e.target.value })}
           />
 
-          <label>Apellido</label>
+          <label>Modelo</label>
           <input
             required
-            value={values.apellido}
-            onChange={(e) => setValues({ ...values, apellido: e.target.value })}
+            value={values.modelo}
+            onChange={(e) => setValues({ ...values, modelo: e.target.value })}
           />
 
-          <label>DNI</label>
+          <label>Patente</label>
           <input
             required
+            value={values.patente}
+            onChange={(e) => setValues({ ...values, patente: e.target.value })}
+          />
+
+          <label>Año</label>
+          <input
             type="number"
-            value={values.dni}
-            onChange={(e) => setValues({ ...values, dni: Number(e.target.value) })}
+            required
+            value={values.anio}
+            onChange={(e) => setValues({ ...values, anio: Number(e.target.value) })}
           />
 
-          <label>Licencia</label>
+          <label>Capacidad de carga (kg)</label>
           <input
+            type="number"
             required
-            value={values.licencia}
-            onChange={(e) => setValues({ ...values, licencia: e.target.value })}
-          />
-
-          <label>Vencimiento de licencia</label>
-          <input
-            required
-            type="date"
-            value={values.vencimiento_licencia}
+            value={values.capacidad_carga}
             onChange={(e) =>
-              setValues({ ...values, vencimiento_licencia: e.target.value })
+              setValues({ ...values, capacidad_carga: parseFloat(e.target.value) })
             }
           />
 
@@ -89,7 +91,7 @@ export const CrearConductor = () => {
             </div>
           )}
         </fieldset>
-        <input type="submit" value="Crear conductor" />
+        <input type="submit" value="Crear vehiculo" />
       </form>
     </article>
   );

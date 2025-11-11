@@ -9,7 +9,7 @@ const vehiculoControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al obtener vehículos" });
+      res.status(500).json({ success: false, errores: ["Error al obtener vehículos"] });
     }
   },
   crear: async (req, res) => {
@@ -24,7 +24,7 @@ const vehiculoControlador = {
 
       if (verificacionPatente) {
         return res.status(400)
-          .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+          .json({ success: false, errores: ["Ya hay un vehiculo registrado con esa patente"] });
       }
 
       const vehiculo = await Vehiculo.crear(marcaForm, modeloForm, patenteForm, anio, capacidad_carga);
@@ -43,7 +43,7 @@ const vehiculoControlador = {
 
     } catch (error) {
       console.error(error)
-      res.status(500).json({ success: false, message: "Error al crear el vehiculo" })
+      res.status(500).json({ success: false, errores: ["Error al crear el vehiculo"] })
     }
   },
   actualizar: async (req, res) => {
@@ -59,7 +59,7 @@ const vehiculoControlador = {
 
       if (verificacionPatente && verificacionPatente.id !== id) {
         return res.status(400)
-          .json({ success: false, message: "Ya hay un vehiculo registrado con esa patente" });
+          .json({ success: false, errores: ["Ya hay un vehiculo registrado con esa patente"] });
       }
 
       await Vehiculo.actualizar(marcaForm, modeloForm, patenteForm, anio, capacidad_carga, id);
@@ -82,7 +82,7 @@ const vehiculoControlador = {
       console.error(error);
       res
         .status(500)
-        .json({ success: false, message: "Error al actualizar el vehiculo" })
+        .json({ success: false, errores: ["Error al actualizar el vehiculo"] })
     }
   },
   eliminar: async (req, res) => {
@@ -95,7 +95,7 @@ const vehiculoControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al eliminar el vehiculo" })
+      res.status(500).json({ success: false, errores: ["Error al eliminar el vehiculo"] })
     }
   },
   obtenerKm: async (req, res) => {
@@ -111,7 +111,7 @@ const vehiculoControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Algo salio mal al calcular los kilometros totales del vehiculo" })
+      res.status(500).json({ success: false, errores: ["Algo salio mal al calcular los kilometros totales del vehiculo"] })
     }
   },
   obtenerPorId: async (req, res) => {
@@ -124,7 +124,7 @@ const vehiculoControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al obtener el vehiculo" })
+      res.status(500).json({ success: false, errores: ["Error al obtener el vehiculo"] })
     }
   }
 };

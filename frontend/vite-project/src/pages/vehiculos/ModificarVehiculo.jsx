@@ -2,15 +2,15 @@ import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../../Auth";
 import { useNavigate, useParams } from "react-router";
 
-export const ModificarConductor = () => {
+export const ModificarVehiculo = () => {
   const { fetchAuth } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
   const [values, setValues] = useState(null);
   const [errores, setErrores] = useState([]);
 
-  const fetchConductor = useCallback(async () => {
-    const response = await fetchAuth(`http://localhost:3000/conductores/${id}`);
+  const fetchVehiculo= useCallback(async () => {
+    const response = await fetchAuth(`http://localhost:3000/vehiculos/${id}`);
     const data = await response.json();
 
     if (!response.ok || !data.success) {
@@ -22,14 +22,14 @@ export const ModificarConductor = () => {
   }, [fetchAuth, id]);
 
   useEffect(() => {
-    fetchConductor();
-  }, [fetchConductor]);
+    fetchVehiculo();
+  }, [fetchVehiculo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrores([]);
 
-    const response = await fetchAuth(`http://localhost:3000/conductores/${id}`, {
+    const response = await fetchAuth(`http://localhost:3000/vehiculos/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -38,55 +38,54 @@ export const ModificarConductor = () => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      return window.alert("Error al modificar el conductor");
+       return window.alert("Error al modificar el vehiculo");
     }
 
-    navigate("/conductores");
+    navigate("/vehiculos");
   };
 
   if (!values) return null;
 
   return (
     <article>
-      <h2>Modificar conductor</h2>
+      <h2>Modificar vehiculo</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <label>Nombre</label>
+          <label>Marca</label>
           <input
             required
-            value={values.nombre}
-            onChange={(e) => setValues({ ...values, nombre: e.target.value })}
+            value={values.marca}
+            onChange={(e) => setValues({ ...values, marca: e.target.value })}
           />
 
-          <label>Apellido</label>
+          <label>Modelo</label>
           <input
             required
-            value={values.apellido}
-            onChange={(e) => setValues({ ...values, apellido: e.target.value })}
+            value={values.modelo}
+            onChange={(e) => setValues({ ...values, modelo: e.target.value })}
           />
 
-          <label>DNI</label>
+          <label>Patente</label>
           <input
             required
-            type="number"
-            value={values.dni}
-            onChange={(e) => setValues({ ...values, dni: Number(e.target.value) })}
+            value={values.patente}
+            onChange={(e) => setValues({ ...values, patente: e.target.value })}
           />
 
-          <label>Licencia</label>
+          <label>Año</label>
           <input
+          type="number"
             required
-            value={values.licencia}
-            onChange={(e) => setValues({ ...values, licencia: e.target.value })}
+            value={values.anio}
+            onChange={(e) => setValues({ ...values, anio: Number(e.target.value) })}
           />
 
-          <label>Vencimiento de licencia</label>
+          <label>Capacidad de carga</label>
           <input
             required
-            type="date"
-            value={values.vencimiento_licencia}
+            value={values.capacidad_carga}
             onChange={(e) =>
-              setValues({ ...values, vencimiento_licencia: e.target.value })
+              setValues({ ...values, capacidad_carga: parseFloat(e.target.value) })
             }
           />
 
