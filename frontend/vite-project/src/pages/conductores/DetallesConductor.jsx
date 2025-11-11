@@ -58,7 +58,7 @@ export const DetallesConductor = () => {
             : kilometros}
       </p>
 
-      <Link role="button" to={`/conductores/${id}/modificar`}>
+      <Link role="button" to={`/conductores/modificar/${id}`}>
         Modificar
       </Link>
     </article>

@@ -54,7 +54,7 @@ export const Conductores = () => {
         <article>
             <h2>Conductores</h2>
 
-            <Link role="button" to="/conductores/crear">
+            <Link role="button" to="/conductores/crear" style={{ marginBottom: "12px", display: "inline-block" }}>
                 Añadir
             </Link>
 
@@ -87,7 +87,7 @@ export const Conductores = () => {
                                 <td>{c.licencia}</td>
                                 <td>{new Date(c.vencimiento_licencia).toLocaleDateString()}</td>
                                 <td>
-                                    <div>
+                                    <div style={{ display: "flex", gap: "0.5rem" }}>
                                         <Link role="button" to={`/conductores/${c.id}`}>
                                             Ver
                                         </Link>
