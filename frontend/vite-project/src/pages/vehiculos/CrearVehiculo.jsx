@@ -11,8 +11,8 @@ export const CrearVehiculo = () => {
     marca: "",
     modelo: "",
     patente: "",
-    anio: "",
-    capacidad_carga: "",
+    anio: 0,
+    capacidad_carga: 0,
   });
 
   const handleSubmit = async (e) => {

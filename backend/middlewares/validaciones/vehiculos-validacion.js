@@ -15,7 +15,7 @@ export const validarBody = [
     .isLength({ min: 5 }).withMessage("La patente es muy corta"),
   body("anio")
     .notEmpty()
-    .isInt({ min: 1990 })
+    .isInt({ min: 1990 }).withMessage("El año del auto es erroneo")
     .custom((value) => {
       const hoy = new Date().getFullYear();
       const año = value;
