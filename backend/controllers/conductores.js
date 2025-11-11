@@ -9,7 +9,7 @@ const conductorControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al obtener los conductores" });
+      res.status(500).json({ success: false, errores: ["Error al obtener los conductores"] });
     }
   },
   crear: async (req, res) => {
@@ -20,7 +20,7 @@ const conductorControlador = {
 
       if (verificacionDni) {
         return res.status(400)
-          .json({ success: false, message: "Ya hay un conductor registrado con ese DNI" });
+          .json({ success: false, errores: ["Ya hay un conductor registrado con ese DNI"] });
       }
 
       const nombreForm = formatearMinusculas(nombre)
@@ -42,7 +42,7 @@ const conductorControlador = {
 
     } catch (error) {
       console.error(error)
-      res.status(500).json({ success: false, message: "Error al crear el conductor" })
+      res.status(500).json({ success: false, errores: ["Error al crear el conductor"] })
     }
   },
   actualizar: async (req, res) => {
@@ -57,7 +57,7 @@ const conductorControlador = {
 
       if (conductor && conductor.id != id) {
         return res.status(400)
-          .json({ success: false, message: "Ya hay un conductor registrado con ese DNI" });
+          .json({ success: false, errores: ["Ya hay un conductor registrado con ese DNI"] });
       }
 
       await Conductor.actualizar(nombreForm, apellidoForm, dni, licencia, vencimiento_licencia, id);
@@ -80,7 +80,7 @@ const conductorControlador = {
       console.error(error);
       res
         .status(500)
-        .json({ success: false, message: "Error al actualizar el conductor" })
+        .json({ success: false, errores: ["Error al actualizar el conductor"] })
     }
   },
   eliminar: async (req, res) => {
@@ -93,7 +93,7 @@ const conductorControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al eliminar el conductor" })
+      res.status(500).json({ success: false, errores: ["Error al eliminar el conductor"] })
     }
   },
   obtenerKm: async (req, res) => {
@@ -109,7 +109,7 @@ const conductorControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Algo salio mal al mostrar los kilometros totales del conductor" })
+      res.status(500).json({ success: false, errores: ["Algo salio mal al mostrar los kilometros totales del conductor"] })
     }
   },
   obtenerPorId: async (req, res) => {
@@ -122,7 +122,7 @@ const conductorControlador = {
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Error al obtener el conductor" })
+      res.status(500).json({ success: false, errores: ["Error al obtener el conductor"] })
     }
   }
 }

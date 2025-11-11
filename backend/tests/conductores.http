@@ -6,7 +6,7 @@ GET {{url}}/conductores
 
 ### Obtener los kilometros hecho por un conductor
 GET {{url}}/conductores/kilometros/1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyODIyNzkyLCJleHAiOjE3NjI4MzcxOTJ9.ZN82kYI8GNBRkdZ1EnVOUYlMaZ_By7MBvNEo2A2CyTY
 ### Crear un nuevo conductor
 POST {{url}}/conductores
 Content-Type: application/json
