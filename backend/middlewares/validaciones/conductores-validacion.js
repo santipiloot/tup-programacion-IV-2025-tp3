@@ -16,7 +16,7 @@ export const validarBody = [
   body("licencia")
     .notEmpty().withMessage("La licencia no puede estar vacio")
     .isAlphanumeric("es-ES").withMessage("La licencia no puede tener caracteres especiales")
-    .isLength({ min: 1 }),
+    .isLength({ min: 1 }).withMessage("La licencia debe tner entre 1 y 15 caracteres"),
   body("vencimiento_licencia")
     .notEmpty().withMessage("La fecha de la licencia no puede estar vacia")
     .isISO8601() // Esto es para que use el formate año, mes, dia
