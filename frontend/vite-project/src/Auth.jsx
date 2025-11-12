@@ -9,6 +9,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
+    const [email, setEmail] = useState(null);
     const [error, setError] = useState(null);
 
     const login = async (email, contrasenia) => {
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
             }
 
             setToken(session.token);
+            setEmail(session.email);
 
             return { success: true };
 

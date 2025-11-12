@@ -48,7 +48,7 @@ const usuarioControlador = {
                 return res.status(400).json({ success: false, errores: ["Email o contraseña incorrecta"] });
             }
 
-            const payload = { id: usuario.id }
+            const payload = { id: usuario.id, email: usuario.email}
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn: "4h"
             });
