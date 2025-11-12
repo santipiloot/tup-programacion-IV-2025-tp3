@@ -3,6 +3,9 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js";
 
+// Logica de negocio 
+// Errores va en un array para manejarlos mejor en el frontend
+
 const usuarioControlador = {
     registro: async (req, res) => {
         try {
@@ -28,7 +31,7 @@ const usuarioControlador = {
             })
         } catch (error) {
             console.error(error)
-            res.status(500).json({ success: false, message: "Error al registrar al usuario" })
+            res.status(500).json({ success: false, errores: ["Error al registrar al usuario"] })
         }
     },
     login: async (req, res) => {
@@ -57,7 +60,7 @@ const usuarioControlador = {
 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ success: false, message: "Error al intentar iniciar sesion" });
+            res.status(500).json({ success: false, errores: ["Error al intentar iniciar sesion"] });
         }
     },
 };

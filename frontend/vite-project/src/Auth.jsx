@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router";
 
 const AuthContext = createContext(null);
 
@@ -84,6 +83,7 @@ export const AuthProvider = ({ children }) => {
             value={{
                 token,
                 error,
+                email,
                 setError,
                 isAuthenticated: !!token,
                 login,
@@ -100,7 +100,7 @@ export const AuthPage = ({ children }) => {
     const { isAuthenticated } = useAuth();
 
     if (!isAuthenticated) {
-        return <h2>Ingrese para ver esta pagina</h2>;
+        return <h2>Inicie seion para ver esta pagina</h2>;
     }
 
     return children;

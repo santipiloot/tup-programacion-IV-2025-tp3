@@ -32,7 +32,7 @@ export const DetallesVehiculo = () => {
       return;
     }
 
-    setKilometros(data.data ?? 0);
+    setKilometros(data.data ?? 0); // Como lo inicializamos en null debemos poner 0 para que se renderize si no hay km registrados
   }, [fetchAuth, id]);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const DetallesVehiculo = () => {
     fetchKilometros();
   }, [fetchVehiculo, fetchKilometros]);
 
-  if (!vehiculo) return <p>Cargando...</p>;
+  if (!vehiculo) return null;
 
   return (
     <article>
@@ -50,15 +50,13 @@ export const DetallesVehiculo = () => {
       <p><b>Patente:</b> {vehiculo.patente}</p>
       <p><b>Anio:</b> {vehiculo.anio}</p>
       <p><b>Capacidad de carga:</b> {vehiculo.capacidad_carga}</p>
-      <p><b>Kilómetros totales: </b> 
-        {kilometros === null
-          ? "Cargando..."
-          : kilometros === 0
+      <p><b>Kilometros totales: </b> 
+        {kilometros === 0
             ? "No hay viajes registrados"
             : kilometros}
       </p>
 
-      <Link role="button" to={`/vehiculos/modificar/${id}`}>
+      <Link role="button" to={`/vehiculos/${id}/modificar`}>
         Modificar
       </Link>
     </article>

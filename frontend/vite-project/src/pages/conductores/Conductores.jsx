@@ -91,7 +91,7 @@ export const Conductores = () => {
                                         <Link role="button" to={`/conductores/${c.id}`}>
                                             Ver
                                         </Link>
-                                        <Link role="button" to={`/conductores/modificar/${c.id}`}>
+                                        <Link role="button" to={`/conductores/${c.id}/modificar`}>
                                             Editar
                                         </Link>
                                         <button onClick={() => eliminarConductor(c.id)}>

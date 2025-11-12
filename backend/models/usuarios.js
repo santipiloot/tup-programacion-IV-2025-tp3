@@ -1,5 +1,7 @@
 import { db } from "../database.js";
 
+// Consultas a la db
+
 const Usuario = {
     registro: async (nombre, email, password) => {
         const [result] = await db.execute("INSERT INTO usuarios (nombre, email, password_hash) VALUES (?, ?, ?)", [nombre, email, password])

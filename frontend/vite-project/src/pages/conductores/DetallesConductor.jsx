@@ -5,7 +5,6 @@ import { useParams, Link } from "react-router";
 export const DetallesConductor = () => {
   const { fetchAuth } = useAuth();
   const { id } = useParams();
-
   const [conductor, setConductor] = useState(null);
   const [kilometros, setKilometros] = useState(null);
 
@@ -14,7 +13,7 @@ export const DetallesConductor = () => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      console.log("Error:", data.errores);
+      console.log("Error al consultar por el conductor:", data.errores);
       return;
     }
 
@@ -28,11 +27,11 @@ export const DetallesConductor = () => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      console.log("Error:", data.errores);
+      console.log("Error al consultar por los kilometros:", data.errores);
       return;
     }
 
-    setKilometros(data.data ?? 0);
+    setKilometros(data.data ?? 0); // Como lo inicializamos en null debemos poner 0 para que se renderize si no hay km registrados
   }, [fetchAuth, id]);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export const DetallesConductor = () => {
     fetchKilometros();
   }, [fetchConductor, fetchKilometros]);
 
-  if (!conductor) return <p>Cargando...</p>;
+  if (!conductor) return null
 
   return (
     <article>
@@ -50,15 +49,13 @@ export const DetallesConductor = () => {
       <p><b>DNI:</b> {conductor.dni}</p>
       <p><b>Licencia:</b> {conductor.licencia}</p>
       <p><b>Vencimiento:</b> {new Date(conductor.vencimiento_licencia).toLocaleDateString()}</p>
-      <p><b>Kilómetros totales: </b> 
-        {kilometros === null
-          ? "Cargando..."
-          : kilometros === 0
+      <p><b>Kilometros totales: </b> 
+        {kilometros === 0
             ? "No hay viajes registrados"
             : kilometros}
       </p>
 
-      <Link role="button" to={`/conductores/modificar/${id}`}>
+      <Link role="button" to={`/conductores/${id}/modificar`}>
         Modificar
       </Link>
     </article>

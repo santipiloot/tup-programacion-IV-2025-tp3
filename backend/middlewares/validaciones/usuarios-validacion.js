@@ -1,5 +1,7 @@
 import { body } from "express-validator";
 
+// Validaciones con mensajes
+
 export const validarEmail = [
     body("email")
         .notEmpty().withMessage("El email no puede estar vacio")

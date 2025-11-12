@@ -1,5 +1,7 @@
 import { db } from "../database.js";
 
+// Consultas a la DB
+
 const Conductor = {
     obtener: async () => {
         const sql = "SELECT * FROM conductores"
@@ -23,7 +25,7 @@ const Conductor = {
         const [rows] = await db.execute(sql, [id])
         return rows[0].total_km
     },
-    obtenerPorDni: async (dni) => {
+    obtenerPorDni: async (dni) => { // Para validar que no exista ya una persona 
         const [rows] = await db.execute("SELECT * FROM conductores WHERE dni=?", [dni])
         return rows[0]
     },

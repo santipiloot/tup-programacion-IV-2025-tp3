@@ -1,7 +1,9 @@
 import { db } from "../database.js";
 
+// Consultas a la DB
+
 const Vehiculo = {
-    obtenerTodos: async () => {
+    obtener: async () => {
         const sql = "SELECT * FROM vehiculos";
         const [rows] = await db.execute(sql)
         return rows;
@@ -24,9 +26,9 @@ const Vehiculo = {
         const [rows] = await db.execute(sql, [id])
         return rows[0].total_km 
     },
-    obtenerPatente: async (patente) => {
+    obtenerPatente: async (patente) => { // Para validar que no exista ya este vehiculo
         const [rows] = await db.execute("SELECT * FROM vehiculos WHERE patente=?", [patente])
-        return rows[0]
+        return rows[0] 
     },
     obtenerPorId: async (id) => {
         const [rows] = await db.execute("SELECT * FROM vehiculos WHERE id=?", [id])

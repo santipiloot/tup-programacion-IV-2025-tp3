@@ -1,5 +1,7 @@
 import { body } from "express-validator";
 
+// Validaciones con mensajes
+
 export const validarBody = [
   body("nombre")
     .isAlpha("es-ES", { ignore: " " }).withMessage("El nombre no puede tener caracteres especiales")

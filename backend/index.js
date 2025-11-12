@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
 
 app.use("/usuarios", usuariosRoutes)
 
+// Proteger todas las rutas siguientes
 app.use(verificarAutenticacion)
 
 app.use("/vehiculos", vehiculosRoutes);

@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@picocss/pico";
 import "./index.css";
-import { Viajes } from "./pages/Viajes"
 import { Layout } from "./Layout.jsx";
 import { Principal } from "./pages/Principal"
 import { AuthProvider, AuthPage } from "./Auth";
@@ -15,6 +14,9 @@ import { Vehiculos } from "./pages/vehiculos/Vehiculos.jsx"
 import { CrearVehiculo } from "./pages/vehiculos/CrearVehiculo.jsx"
 import { DetallesVehiculo } from "./pages/vehiculos/DetallesVehiculo.jsx"
 import { ModificarVehiculo } from "./pages/vehiculos/ModificarVehiculo.jsx"
+import { Viajes } from "./pages/viajes/Viajes.jsx";
+import { CrearViaje } from "./pages/viajes/CrearViaje.jsx";
+import { DetallesViaje } from "./pages/viajes/DetallesViaje.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -47,7 +49,7 @@ createRoot(document.getElementById("root")).render(
               }
             />
             <Route
-              path="vehiculos/modificar/:id"
+              path="vehiculos/:id/modificar"
               element={
                 <AuthPage>
                   <ModificarVehiculo />
@@ -78,7 +80,7 @@ createRoot(document.getElementById("root")).render(
               }
             />
             <Route
-              path="conductores/modificar/:id"
+              path="conductores/:id/modificar"
               element={
                 <AuthPage>
                   <ModificarConductor />
@@ -86,11 +88,28 @@ createRoot(document.getElementById("root")).render(
               }
             />
             <Route
-              path="viajes"
+              path="/viajes"
               element={
                 <AuthPage>
                   <Viajes />
-                </AuthPage>}
+                </AuthPage>
+                }
+            />
+            <Route
+              path="/viajes/crear"
+              element={
+                <AuthPage>
+                  <CrearViaje />
+                </AuthPage>
+                }
+            />
+            <Route
+              path="/viajes/:id"
+              element={
+                <AuthPage>
+                  <DetallesViaje />
+                </AuthPage>
+                }
             />
           </Route>
         </Routes>

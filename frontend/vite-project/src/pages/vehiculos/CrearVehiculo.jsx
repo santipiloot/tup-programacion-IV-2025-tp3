@@ -11,8 +11,8 @@ export const CrearVehiculo = () => {
     marca: "",
     modelo: "",
     patente: "",
-    anio: 0,
-    capacidad_carga: 0,
+    anio: "",
+    capacidad_carga: "",
   });
 
   const handleSubmit = async (e) => {
@@ -83,9 +83,9 @@ export const CrearVehiculo = () => {
 
           {errores.length > 0 && (
             <div>
-              {errores.map((err, i) => (
+              {errores.map((error, i) => (
                 <p key={i} style={{ color: "red" }}>
-                  {err}
+                  {error}
                 </p>
               ))}
             </div>

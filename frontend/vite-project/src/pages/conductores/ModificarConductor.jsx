@@ -92,9 +92,9 @@ export const ModificarConductor = () => {
 
           {errores.length > 0 && (
             <div>
-              {errores.map((err, i) => (
+              {errores.map((errores, i) => (
                 <p key={i} style={{ color: "red" }}>
-                  {err}
+                  {errores}
                 </p>
               ))}
             </div>

@@ -83,6 +83,7 @@ export const ModificarVehiculo = () => {
           <label>Capacidad de carga</label>
           <input
             required
+            type="number"
             value={values.capacidad_carga}
             onChange={(e) =>
               setValues({ ...values, capacidad_carga: parseFloat(e.target.value) })
@@ -91,9 +92,9 @@ export const ModificarVehiculo = () => {
 
           {errores.length > 0 && (
             <div>
-              {errores.map((err, i) => (
+              {errores.map((error, i) => (
                 <p key={i} style={{ color: "red" }}>
-                  {err}
+                  {error}
                 </p>
               ))}
             </div>

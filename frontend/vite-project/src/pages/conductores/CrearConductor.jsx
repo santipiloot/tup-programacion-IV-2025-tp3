@@ -28,8 +28,10 @@ export const CrearConductor = () => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      setErrores(data.errores);
-      return;
+      if (response.status === 400) {
+        return setErrores(data.errores);
+      }
+      return window.alert("Error al crear el conductor");
     }
 
     navigate("/conductores");
@@ -81,9 +83,9 @@ export const CrearConductor = () => {
 
           {errores.length > 0 && (
             <div>
-              {errores.map((err, i) => (
+              {errores.map((error, i) => (
                 <p key={i} style={{ color: "red" }}>
-                  {err}
+                  {error}
                 </p>
               ))}
             </div>

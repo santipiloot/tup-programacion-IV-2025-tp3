@@ -1,6 +1,9 @@
 import Conductor from "../models/conductores.js"
 import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js"
 
+// Logica de negocio 
+// Errores va en un array para manejarlos mejor en el frontend
+
 const conductorControlador = {
   obtener: async (req, res) => {
     try {

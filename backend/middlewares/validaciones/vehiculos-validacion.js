@@ -1,5 +1,7 @@
 import { body } from "express-validator";
 
+// Validaciones con mensajes
+
 export const validarBody = [
   body("marca")
     .isAlpha("es-ES", { ignore: " " }).withMessage("El nombre de la marca no puede llevar caracteres especiales")
@@ -16,7 +18,7 @@ export const validarBody = [
   body("anio")
     .notEmpty()
     .isInt({ min: 1990 }).withMessage("El año del auto es erroneo")
-    .custom((value) => {
+    .custom((value) => { // Validacion personalizada vista en clase
       const hoy = new Date().getFullYear();
       const año = value;
 

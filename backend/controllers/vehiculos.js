@@ -1,10 +1,12 @@
 import Vehiculo from "../models/vehiculos.js";
 import { formatearMinusculas } from "../middlewares/validaciones/verificar-validacion.js"
 
+// Logica de negocio 
+// Errores va en un array para manejarlos mejor en el frontend
 const vehiculoControlador = {
-  obtenerTodos: async (req, res) => {
+  obtener: async (req, res) => {
     try {
-      const vehiculos = await Vehiculo.obtenerTodos();
+      const vehiculos = await Vehiculo.obtener();
       res.status(200).json({ success: true, data: vehiculos });
 
     } catch (error) {
